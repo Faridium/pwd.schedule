@@ -1,0 +1,144 @@
+<br />
+
+<div class="container">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="form-group col-md-9 font-weight-bold">
+                                <h4> Schedule of Works </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:25%"></td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="code"
+                                                           id="code"
+                                                           required
+                                                           minlength="3"
+                                                           maxlength="16"
+                                                           [(ngModel)]="code"
+                                                           (keyup.enter)="search()"
+                                                           (ngModelChange)="codeChange()"
+                                                           #codeModel="ngModel"
+                                                           #codeEl />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button (click)="search()" [disabled]="isSearch" class="btn btn-primary  mx-2">Search</button>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Result</td>
+                                        <td>
+                                            <select [(ngModel)]="item"
+                                                    id="item"
+                                                    name="item"
+                                                    class="form-control"
+                                                    #chapterModel="ngModel"
+                                                    (change)="changeItem($event)"
+                                                    #itemEl>
+                                                <option value="0" selected>Select one</option>
+                                                <option *ngFor="let c of resultItems" value={{c.id}}>{{c.code+" "+c.name}}</option>
+                                            </select>
+                                            <!--<div *ngFor='let item of array;let i = index'>
+        <input type="radio" [checked]="item.selected" (change)='radioChecked(item.id,i)'>
+        <input type="text" value='{{item.name}}' />
+        <button type="button">save</button>
+    </div>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label><br>-->
+
+                                        </td>
+                                    </tr>
+
+                                    
+                                    <tr *ngIf="showitem.rate>0">
+                                        <td></td>
+                                        <td>
+                                            Topic: {{showitem.topic.name}}<br />
+                                            <!--Description: {{showitem.topic.description}}<br />-->
+                                            Type: {{showitem.topic.type}}<br />
+                                            Page: {{showitem.topic.page}}<br />
+                                            Code: {{showitem.code}} <br />
+                                            Rate: Tk {{showitem.rate|number}}  <br />
+                                            Unit: {{showitem.unit}}<br />
+                                            Quantity: <input type="text" [(ngModel)]="qty" /> <br />
+                                            <p></p>
+                                            <button (click)="addItem()" class="btn btn-primary ">Add</button>
+                                            <button (click)="addItemValue()" class="btn btn-primary mx-2">Add Value</button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="list.length>0">
+                                        <td colspan="2" align="center">
+                                            <button (click)="dlFile()" class="btn btn-primary mx-2">Download</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div *ngIf="list.length>0" class="row">
+                                <div class="form-group row ">
+                                    <table style="border-collapse: collapse; width: 100%;" border="1">
+                                        <tbody>
+                                            <tr style="height: 18px;">
+                                                <td>SL. No.</td>
+                                                <td>SH</td>
+                                                <td>CE&rsquo;s Sch. Page No.</td>
+                                                <td>Item No.</td>
+                                                <td width="70%">Description of Items</td>
+                                                <td>Quantity</td>
+                                                <td>Rate</td>
+                                                <td>Amount</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--no: this.list.length+1, chapter: this.showchapter.id, page: this.topic.page, code: this.item.code, description: this.item.description, quantity: this.qty, rate: item.rate, amount: item.rate * this.qty-->
+                                            <tr *ngFor="let l of list " >
+                                                <td>&nbsp;{{l.no}}</td>
+                                                <td>&nbsp;{{l.chapter}}</td>
+                                                <td>&nbsp;{{l.page}}</td>
+                                                <td>&nbsp;{{l.code}}</td>
+                                                <td [innerHTML]="l.description">&nbsp;</td>
+                                                <td>&nbsp;{{l.quantity}}</td>
+                                                <td>&nbsp;{{l.rate|number}}</td>
+                                                <td>&nbsp;{{l.amount|number}}</td>
+                                                <td>
+                                                    &nbsp; <button (click)="remove(l.no)" class="btn btn-primary" type="button">X</button>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">&nbsp;Total</td>
+                                                <td>&nbsp;{{total|number}}</td>
+                                                <td>&nbsp;</td>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<p>scheduler works!</p>-->
+<!--<p>search works!</p>-->
