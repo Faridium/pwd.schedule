@@ -90,16 +90,22 @@ namespace PWD.Schedule.Models
         public string Name { get; set; }
         public string Description { get; set; }
     }
+    public class EstimateProject : Entity<int>
+    {
+        public string Name { get; set; }
+        public List<EstimateComponent> Components { get; set; }
 
-    public class EstimateComponent
+    }
+
+    public class EstimateComponent : Entity<int>
     {
         public string ItemNo { get; set; }
         public string Description { get; set; }
         public double TotalValue { get; set; }
-        public List<EstimateItem> Items{ get; set; }       
+        public List<EstimateItem> Items { get; set; }
     }
 
-    public class EstimateItem
+    public class EstimateItem : Entity<int>
     {
         public string ItemNo { get; set; }
         public string Description { get; set; }
@@ -111,51 +117,7 @@ namespace PWD.Schedule.Models
         public List<EstimateDimension> Dimensions { get; set; }
 
     }
-
-    public class EstimateDimension:Entity<int>
-    {
-        public string Description { get; set; }
-        //Multipliers
-        public double Buildings { get; set; } = 1;
-        public double Floors { get; set; } = 1;
-        public double Quantity { get; set; } = 1;
-        //Dimensions
-        public double Length { get; set; }
-        public double LengthFraction { get; set; } = 0;
-        public double Width { get; set; }
-        public double WidthFraction { get; set; } = 0;
-        public double Height { get; set; }
-        public double HeightFraction { get; set; } = 0;
-        //Total
-        public double TotalQuantity { get; set; }
-        public int UnitType { get; set; }
-        public int ItemType { get; set; }
-        public string QuantityRef { get; set; }
-        public void calculateTotal()
-        {
-            switch (ItemType)
-            {
-                case 1:
-                    TotalQuantity  = Length * Width * Height;
-                    break;
-                case 2:
-                    TotalQuantity  = .5 * Length * Width * Height;
-                    break;
-                case 3:
-                    TotalQuantity  = .5 * (Length + Width) * Height;
-                    break;
-                case 4:
-                    TotalQuantity  = Math.PI * (Width * Width / 4) * Height;
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-
-    }
-    public class EstimateBlock:Entity<int>
+    public class EstimateBlock : Entity<int>
     {
         public int RefNo { get; set; }
         public string Code { get; set; }
@@ -172,29 +134,73 @@ namespace PWD.Schedule.Models
         public int ItemId { get; set; }
         public EstimateItem Item { get; set; }
         public List<EstimateDimension> Dimensions { get; set; }
+    }
+    public class EstimateDimension : Entity<int>
+    {
+        public string Description { get; set; }
+        //Multipliers
+        public double Buildings { get; set; } = 1;
+        public double Floors { get; set; } = 1;
+        public double Quantity { get; set; } = 1;
+        //Dimensions
+        public double Length { get; set; }
+        public double LengthFraction { get; set; } = 0;
+        public double Width { get; set; }
+        public double WidthFraction { get; set; } = 0;
+        public double Height { get; set; }
+        public double HeightFraction { get; set; } = 0;
+        //Total
+        public double TotalQuantity { get; set; }
+        public UnitType UnitType { get; set; }
+        public ItemType ItemType { get; set; }
+        public string QuantityRef { get; set; }
+        public void calculateTotal()
+        {
+            switch (ItemType)
+            {
+                case ItemType.Cubid:
+                    TotalQuantity = Length * Width * Height;
+                    break;
+                case ItemType.TriangularBasedPyramid:
+                    TotalQuantity = .5 * Length * Width * Height;
+                    break;
+                case ItemType.SquareBasedPyramid:
+                    TotalQuantity = .5 * (Length + Width) * Height;
+                    break;
+                case ItemType.Sphere:
+                    TotalQuantity = Math.PI * (Width * Width / 4) * Height;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
 
     }
 
-    public class EstimateSection: Entity<int>
-    {
-        public string Code { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public double Qurantity { get; set; }
-        public double QurantitySI { get; set; }
-        public bool IsSubtract { get; set; }
-        public string QuantityRef { get; set; }
-        public List<EstimateDimension> Dimensions { get; set; }
 
+    public enum ItemType
+    {
+        Cube = 1,
+        Cubid = 2,
+        Cylinder = 3,
+        Sphere = 4,
+        Cone = 5,
+        TriangularPrism = 6,
+        SquareBasedPyramid = 7,
+        TriangularBasedPyramid = 8,
+    }
+
+    public enum UnitType
+    {
+        Imperial = 1,
+        SI = 2
     }
     public enum WorkType
     {
-        Civil=1,
-        ElectroMechanical=2
+        Civil = 1,
+        ElectroMechanical = 2
     }
-    public enum UnitType
-    {
-        Cube=1,
-        Cylinder=2
-    }
+
 }
