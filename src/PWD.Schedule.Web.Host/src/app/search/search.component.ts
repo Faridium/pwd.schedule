@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import { CategoryDto, ChapterDto, InstrumentServiceProxy, ExportExcelServiceProxy, ItemDto, ItemListDto, TopicDto, ItemResultDto } from '../../shared/service-proxies/service-proxies';
+import { CategoryDto, ChapterDto, InstrumentServiceProxy, ExportExcelServiceProxy, ItemDto, ItemListDto, TopicDto, ItemResultDto, EstimateItemDto, EstimateBlockDto } from '../../shared/service-proxies/service-proxies';
 import { AppConsts } from '../../shared/AppConsts';
 import { isNullOrUndefined } from 'util';
 
@@ -38,6 +38,7 @@ export class SearchComponent implements OnInit {
     qty: number = 0;
     total: number = 0;
     subName: string = "";
+    type: number = 1;
     ngOnInit(): void {
 
         this.sp.getChapters()
@@ -52,7 +53,7 @@ export class SearchComponent implements OnInit {
    
     search(): void {
 
-        this.sp.searchItemCode(this.code).subscribe((r: ItemResultDto[]) => {
+        this.sp.searchItemCode(this.code,this.type).subscribe((r: ItemResultDto[]) => {
             this.resultItems = r;
             this.showitem = new ItemDto();
  
@@ -159,6 +160,19 @@ export class SearchComponent implements OnInit {
         this.qty = 0;
         console.log(this.list);
         this.total = _.sumBy(this.list, l => l.amount);
+    }
+
+    addEstimateItem() {
+        var item = new EstimateItemDto();
+        item.code = this.showitem.code;
+        item.description = this.showitem.description;
+        item.rate = this.showitem.rate;
+    }
+
+    addEstimateBlock() {
+        var block = new EstimateBlockDto();
+        block.refNo = Math.floor(Math.random() * (9999 - 1000) + 1000);
+        
     }
     dlFile() {
         console.log(AppConsts.remoteServiceBaseUrl);

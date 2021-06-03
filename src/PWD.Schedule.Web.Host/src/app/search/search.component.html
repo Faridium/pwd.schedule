@@ -20,6 +20,17 @@
                                         <td>
                                             <div class="row">
                                                 <div class="col-md-3">
+                                                    <input type="radio" [(ngModel)]="type" value="1" checked /> Civil
+                                                    <input type="radio" [(ngModel)]="type" value="2" checked /> EM
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:25%"></td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-3">
                                                     <input type="text"
                                                            class="form-control"
                                                            name="code"
@@ -36,9 +47,9 @@
                                                 <div class="col-md-6">
                                                     <button (click)="search()" [disabled]="isSearch" class="btn btn-primary  mx-2">Search</button>
                                                 </div>
-                                                
+
                                             </div>
-                                            
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -55,21 +66,22 @@
                                                 <option *ngFor="let c of resultItems" value={{c.id}}>{{c.code+" "+c.name}}</option>
                                             </select>
                                             <!--<div *ngFor='let item of array;let i = index'>
-        <input type="radio" [checked]="item.selected" (change)='radioChecked(item.id,i)'>
-        <input type="text" value='{{item.name}}' />
-        <button type="button">save</button>
-    </div>
-    <input type="radio" id="male" name="gender" value="male">
-    <label for="male">Male</label><br>-->
+                                                <input type="radio" [checked]="item.selected" (change)='radioChecked(item.id,i)'>
+                                                <input type="text" value='{{item.name}}' />
+                                                <button type="button">save</button>
+                                            </div>
+                                            <input type="radio" id="male" name="gender" value="male">
+                                            <label for="male">Male</label><br>-->
 
                                         </td>
                                     </tr>
 
-                                    
+
                                     <tr *ngIf="showitem.rate>0">
                                         <td></td>
                                         <td>
                                             Topic: {{showitem.topic.name}}<br />
+
                                             <!--Description: {{showitem.topic.description}}<br />-->
                                             Type: {{showitem.topic.type}}<br />
                                             Page: {{showitem.topic.page}}<br />
@@ -107,7 +119,7 @@
                                                 <td></td>
                                             </tr>
                                             <!--no: this.list.length+1, chapter: this.showchapter.id, page: this.topic.page, code: this.item.code, description: this.item.description, quantity: this.qty, rate: item.rate, amount: item.rate * this.qty-->
-                                            <tr *ngFor="let l of list " >
+                                            <tr *ngFor="let l of list ">
                                                 <td>&nbsp;{{l.no}}</td>
                                                 <td>&nbsp;{{l.chapter}}</td>
                                                 <td>&nbsp;{{l.page}}</td>

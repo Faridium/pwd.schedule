@@ -92,4 +92,77 @@ namespace PWD.Schedule.Instrument.Dto
         public string Description { get; set; }
         public double Rate { get; set; }
     }
+
+    [AutoMapFrom(typeof(EstimateProject))]
+
+    public class EstimateProjectDto : EntityDto<int>
+    {
+        public string Name { get; set; }
+        public List<EstimateComponentDto> Components { get; set; }
+
+    }
+    [AutoMapFrom(typeof(EstimateComponent))]
+
+    public class EstimateComponentDto : EntityDto<int>
+    {
+        public string ItemNo { get; set; }
+        public string Description { get; set; }
+        public double TotalValue { get; set; }
+        public List<EstimateItemDto> Items { get; set; }
+    }
+    [AutoMapFrom(typeof(EstimateItem))]
+
+    public class EstimateItemDto : EntityDto<int>
+    {
+        public string ItemNo { get; set; }
+        public string Description { get; set; }
+        public string Code { get; set; }
+        public double Quantity { get; set; }
+        public double Rate { get; set; }
+        public double TotalValue { get; set; }
+        public List<EstimateBlockDto> Blocks { get; set; }
+        public List<EstimateDimensionDto> Dimensions { get; set; }
+
+    }
+    [AutoMapFrom(typeof(EstimateBlock))]
+    public class EstimateBlockDto : EntityDto<int>
+    {
+        public int RefNo { get; set; }
+        public string Code { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public double Qurantity { get; set; }
+        public double QurantitySI { get; set; }
+        public double Rate { get; set; }
+        public double TotalValue { get; set; }
+        public bool IsDeduction { get; set; }
+        public bool IsValue { get; set; }
+        public int ParentId { get; set; }
+        public string QuantityRef { get; set; }
+        public int ItemId { get; set; }
+        public EstimateItemDto Item { get; set; }
+        public List<EstimateDimensionDto> Dimensions { get; set; }
+    }
+    [AutoMapFrom(typeof(EstimateDimension))]
+    public class EstimateDimensionDto : EntityDto<int>
+    {
+        public string Description { get; set; }
+        //Multipliers
+        public double Buildings { get; set; } = 1;
+        public double Floors { get; set; } = 1;
+        public double Quantity { get; set; } = 1;
+        //Dimensions
+        public double Length { get; set; }
+        public double LengthFraction { get; set; } = 0;
+        public double Width { get; set; }
+        public double WidthFraction { get; set; } = 0;
+        public double Height { get; set; }
+        public double HeightFraction { get; set; } = 0;
+        //Total
+        public double TotalQuantity { get; set; }
+        public UnitType UnitType { get; set; }
+        public ItemType ItemType { get; set; }
+        public string QuantityRef { get; set; }
+    }
+
 }

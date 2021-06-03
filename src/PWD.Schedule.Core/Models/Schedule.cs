@@ -94,7 +94,6 @@ namespace PWD.Schedule.Models
     {
         public string Name { get; set; }
         public List<EstimateComponent> Components { get; set; }
-
     }
 
     public class EstimateComponent : Entity<int>
@@ -154,6 +153,10 @@ namespace PWD.Schedule.Models
         public UnitType UnitType { get; set; }
         public ItemType ItemType { get; set; }
         public string QuantityRef { get; set; }
+        public int? BlockId { get; set; }
+        public EstimateBlock? Block { get; set; }
+        public int? ItemId { get; set; }
+        public EstimateItem? Item { get; set; }
         public void calculateTotal()
         {
             switch (ItemType)
@@ -175,7 +178,6 @@ namespace PWD.Schedule.Models
             }
 
         }
-
 
     }
 
