@@ -40,6 +40,7 @@ import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { SearchComponent } from './search/search.component';
+import { EstimateItemComponent } from './estimate-item/estimate-item.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { SearchComponent } from './search/search.component';
     SidebarUserPanelComponent,
     SidebarMenuComponent,
     SchedulerComponent,
-    SearchComponent
+    SearchComponent,
+    EstimateItemComponent
   ],
   imports: [
     CommonModule,

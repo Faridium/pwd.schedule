@@ -93,6 +93,8 @@ namespace PWD.Schedule.Models
     public class EstimateProject : Entity<int>
     {
         public string Name { get; set; }
+        public string MeasurementUnit { get; set; }
+        public int NumberofBuildings { get; set; }
         public List<EstimateComponent> Components { get; set; }
     }
 
@@ -109,9 +111,12 @@ namespace PWD.Schedule.Models
         public string ItemNo { get; set; }
         public string Description { get; set; }
         public string Code { get; set; }
+        public string Variation { get; set; }
+        public WorkType WorkType { get; set; }
         public double Quantity { get; set; }
         public double Rate { get; set; }
         public double TotalValue { get; set; }
+        public bool IsAnalysis { get; set; }
         public List<EstimateBlock> Blocks { get; set; }
         public List<EstimateDimension> Dimensions { get; set; }
 
@@ -120,6 +125,8 @@ namespace PWD.Schedule.Models
     {
         public int RefNo { get; set; }
         public string Code { get; set; }
+        public string Variation { get; set; }
+        public WorkType WorkType { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public double Qurantity { get; set; }
@@ -136,6 +143,7 @@ namespace PWD.Schedule.Models
     }
     public class EstimateDimension : Entity<int>
     {
+        public string Heading { get; set; }
         public string Description { get; set; }
         //Multipliers
         public double Buildings { get; set; } = 1;
@@ -199,10 +207,19 @@ namespace PWD.Schedule.Models
         Imperial = 1,
         SI = 2
     }
+
+    public enum BlockType
+    {
+        TypeA, //Simple block set of dimensions
+        TypeB, 
+        TypeC,
+        TypeD,
+        TypeE,
+    }
     public enum WorkType
     {
-        Civil = 1,
-        ElectroMechanical = 2
+        Civil = 2,
+        ElectroMechanical = 1
     }
 
 }

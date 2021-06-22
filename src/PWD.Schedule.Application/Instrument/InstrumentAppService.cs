@@ -80,7 +80,6 @@ namespace PWD.Schedule.Instrument
             list = objectMapper.Map<List<ItemResultDto>>(items);
             return list;
         }
-
         public EstimateProjectDto getProject()
         {
             var a = new EstimateDimension();
@@ -109,13 +108,11 @@ namespace PWD.Schedule.Instrument
                     Unit = x.Unit
                 }));
         }
-
         public void XCopyC()
         {
             var xl = xCRepository.GetAll().OrderBy(x => x.Id).ToList();
             xl.ForEach(x => { categoryRepository.Insert(new Category() { Name = x.Name, ParentId = x.ParentId }); CurrentUnitOfWork.SaveChanges(); });
         }
-
         public void cleanduplicates()
         {
             var codes = itemRepository.GetAllIncluding(i => i.Topic).Include(i => i.Topic.Chapter)
@@ -137,7 +134,6 @@ namespace PWD.Schedule.Instrument
             }
             //removelist.ForEach(r => itemRepository.Delete(r));
         }
-
         public void addTopic()
         {
             var clist = chapterRepository.GetAll().Where(i => i.Id > 24);
@@ -145,6 +141,25 @@ namespace PWD.Schedule.Instrument
             {
                 topicRepository.Insert(new Topic() { Name = c.Title, ChapterId = c.Id });
             });
+        }
+
+        public void abc()
+        {
+            var pro = new EstimateProject();
+            var comp = new EstimateComponent();
+            var item = new EstimateItem();
+            var block = new EstimateBlock();
+            var dim = new EstimateDimension();
+            dim.Length = 5;
+            dim.Width = 2;
+            dim.Height = 9;
+            dim.calculateTotal();
+            block.Code = "2.10.1";
+            block.WorkType = WorkType.Civil;
+            var litem =searchItemCode(block.Code, (int)block.WorkType).FirstOrDefault();
+            block.Description=litem.Description;
+            block.Rate = litem.Rate;
+
         }
     }
 }

@@ -98,6 +98,8 @@ namespace PWD.Schedule.Instrument.Dto
     public class EstimateProjectDto : EntityDto<int>
     {
         public string Name { get; set; }
+        public string MeasurementUnit { get; set; }
+        public int NumberofBuildings { get; set; }
         public List<EstimateComponentDto> Components { get; set; }
 
     }
@@ -120,6 +122,8 @@ namespace PWD.Schedule.Instrument.Dto
         public double Quantity { get; set; }
         public double Rate { get; set; }
         public double TotalValue { get; set; }
+        public WorkType WorkType { get; set; }
+        public bool IsAnalysis { get; set; }
         public List<EstimateBlockDto> Blocks { get; set; }
         public List<EstimateDimensionDto> Dimensions { get; set; }
 
@@ -129,12 +133,13 @@ namespace PWD.Schedule.Instrument.Dto
     {
         public int RefNo { get; set; }
         public string Code { get; set; }
+        public WorkType WorkType { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public double Qurantity { get; set; }
-        public double QurantitySI { get; set; }
+        public double Qurantity { get; set; } = 0;
+        public double QurantitySI { get; set; } = 0;
         public double Rate { get; set; }
-        public double TotalValue { get; set; }
+        public double TotalValue { get; set; } = 0;
         public bool IsDeduction { get; set; }
         public bool IsValue { get; set; }
         public int ParentId { get; set; }
@@ -159,7 +164,7 @@ namespace PWD.Schedule.Instrument.Dto
         public double Height { get; set; }
         public double HeightFraction { get; set; } = 0;
         //Total
-        public double TotalQuantity { get; set; }
+        public double TotalQuantity { get; set; } = 0;
         public UnitType UnitType { get; set; }
         public ItemType ItemType { get; set; }
         public string QuantityRef { get; set; }

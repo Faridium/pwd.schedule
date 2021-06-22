@@ -8,11 +8,12 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
-                            <div class="form-group col-md-9 font-weight-bold">
-                                <h4> Schedule of Works </h4>
+                            <div class="form-group col-md-12 font-weight-bold">
+                                <h4>Create Estimate  </h4>
                             </div>
                         </div>
                         <div class="card-body">
+
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
@@ -20,8 +21,8 @@
                                         <td>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <input type="radio" [(ngModel)]="type" value="1" checked /> Civil
-                                                    <input type="radio" [(ngModel)]="type" value="2" checked /> EM
+                                                    <input type="radio" [(ngModel)]="type" value="2" checked /> Civil
+                                                    <input type="radio" [(ngModel)]="type" value="1" checked /> EM
                                                 </div>
                                             </div>
                                         </td>
@@ -66,13 +67,7 @@
                                                 <option value="0" selected>Select one</option>
                                                 <option *ngFor="let c of resultItems" value={{c.id}}>{{c.code+" "+c.name}}</option>
                                             </select>
-                                            <!--<div *ngFor='let item of array;let i = index'>
-                                                <input type="radio" [checked]="item.selected" (change)='radioChecked(item.id,i)'>
-                                                <input type="text" value='{{item.name}}' />
-                                                <button type="button">save</button>
-                                            </div>
-                                            <input type="radio" id="male" name="gender" value="male">
-                                            <label for="male">Male</label><br>-->
+
 
                                         </td>
                                     </tr>
@@ -102,48 +97,25 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-
-                            <div *ngIf="list.length>0" class="row">
+                            <div class="row">
                                 <div class="form-group row ">
                                     <table style="border-collapse: collapse; width: 100%;" border="1">
                                         <tbody>
-                                            <tr style="height: 18px;">
-                                                <td>SL. No.</td>
-                                                <td>SH</td>
-                                                <td>CE&rsquo;s Sch. Page No.</td>
-                                                <td>Item No.</td>
-                                                <td width="70%">Description of Items</td>
-                                                <td>Quantity</td>
-                                                <td>Rate</td>
-                                                <td>Amount</td>
-                                                <td></td>
+                                            <tr>
+                                                <td>Item no</td>
+                                                <td>Description</td>
                                             </tr>
-                                            <!--no: this.list.length+1, chapter: this.showchapter.id, page: this.topic.page, code: this.item.code, description: this.item.description, quantity: this.qty, rate: item.rate, amount: item.rate * this.qty-->
-                                            <tr *ngFor="let l of list ">
-                                                <td>&nbsp;{{l.no}}</td>
-                                                <td>&nbsp;{{l.chapter}}</td>
-                                                <td>&nbsp;{{l.page}}</td>
-                                                <td>&nbsp;{{l.code}}</td>
-                                                <td [innerHTML]="l.description">&nbsp;</td>
-                                                <td>&nbsp;{{l.quantity}}</td>
-                                                <td>&nbsp;{{l.rate|number}}</td>
-                                                <td>&nbsp;{{l.amount|number}}</td>
-                                                <td>
-                                                    &nbsp; <button (click)="remove(l.no)" class="btn btn-primary" type="button">X</button>
-
-                                                </td>
+                                            <tr>
+                                                <td><table style="width:100%">
+                                                    <tr>
+                                                    <td>item1 <br /></td>
+                                                    <td>code 1234</td>
+                                                    </tr></table></td>
+                                                <td>abc def</td>
                                             </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="7">&nbsp;Total</td>
-                                                <td>&nbsp;{{total|number}}</td>
-                                                <td>&nbsp;</td>
-
-                                            </tr>
-                                        </tfoot>
                                     </table>
+
                                 </div>
                             </div>
                         </div>
@@ -153,5 +125,4 @@
         </div>
     </div>
 </div>
-<!--<p>scheduler works!</p>-->
-<!--<p>search works!</p>-->
+<!--<p>estimate-item works!</p>-->

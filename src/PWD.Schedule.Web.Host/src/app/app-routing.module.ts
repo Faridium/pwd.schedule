@@ -10,6 +10,7 @@ import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { SearchComponent } from './search/search.component';
+import { EstimateItemComponent } from './estimate-item/estimate-item.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { SearchComponent } from './search/search.component';
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'estimate', component: SchedulerComponent, data: { permission: 'Pages.Estimate' }, canActivate: [AppRouteGuard] },
                     { path: 'search', component: SearchComponent, data: { permission: 'Pages.Estimate' }, canActivate: [AppRouteGuard] },
+                    { path: 'item', component: EstimateItemComponent, data: { permission: 'Pages.Estimate' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent },
                     { path: 'update-password', component: ChangePasswordComponent }

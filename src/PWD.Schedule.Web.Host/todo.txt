@@ -1,0 +1,28 @@
+﻿add item to component
+
+pattern-1
+item has single code and description and set of dimension
+if item has no block, add a skeleton block
+if block exists add to the block, update total qty
+add dimension to item
+
+pattern-2
+item has code and description (non rate) but the block has it's own code and decription
+rest follows as pattern-1
+
+pattern-3
+item has multiple blocks of same code
+multiple sets of blocks with addition and deduction
+
+pattern-4
+item has multiple blocks of same code with variations
+multiple sets of blocks with addition and deduction
+
+pattern-5
+item has multiple blocks with multiple codes
+
+pattern-6
+item has reference quantity from external item
+
+pattern-7
+the rate is not from SoR, but analysis item for the project
